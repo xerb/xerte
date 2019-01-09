@@ -3,17 +3,11 @@
 # This was built for Ubuntu 18.04 launched on top of EC2.
 #
 # We really hope it works for you.
-#
 
 set -e
 set -x
 
-if [ "$(id -u)" -eq 0 ]; then
-   echo "Do not run this script as root" 
-   exit 1
-fi
-
-sudo apt-get update -qq && sudo apt-get -y install \
+apt-get update -qq && apt-get -y install \
   autoconf \
   automake \
   build-essential \
@@ -21,7 +15,6 @@ sudo apt-get update -qq && sudo apt-get -y install \
   coreutils \
   git-core \
   libass-dev \
-  libfdk-aac-dev \
   libfreetype6-dev \
   libmp3lame-dev \
   libnuma-dev \

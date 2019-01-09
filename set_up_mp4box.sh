@@ -9,5 +9,5 @@ cd src
 wget "https://download.tsi.telecom-paristech.fr/gpac/release/0.7.0/gpac_0.7.0_amd64.deb"
 
 echo "Unpacking .deb package and installing dependencies"
-sudo dpkg -i "gpac_0.7.0_amd64.deb" || true
-sudo apt-get -f install -y
+dpkg -i "gpac_0.7.0_amd64.deb" || true
+apt-get -f install -y
