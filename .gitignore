@@ -4,3 +4,10 @@ __pycache__
 # Created when running scripts to install ffmpeg/mp4box locally
 build
 src
+
+# Editor files to ignore
+.vscode
+.idea
+
+# To ingnore local enviroments
+venv
