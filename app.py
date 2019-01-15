@@ -2,6 +2,7 @@ from flask import Flask, request
 from urllib import parse
 import subprocess
 import threading
+import uuid
 
 
 app = Flask(__name__)
@@ -17,22 +18,22 @@ def start_job():
     params = request.args
     input_file_url = params['url']
     decode = parse.unquote(input_file_url)
-    start_transcode_pipeline(decode)
-    return 'Created', 201
+    output_uuid = uuid.uuid4()
+    start_transcode_pipeline(decode, output_uuid)
+    return str(output_uuid), 201
 
 
 def urlencode(str):
     return parse.quote(str)
 
 
-def start_transcode_pipeline(url):
-    print(url)
-    ffmpeg_thread = threading.Thread(target=run_ffmpeg, args=(url,))
+def start_transcode_pipeline(url, uuid):
+    ffmpeg_thread = threading.Thread(target=run_ffmpeg, args=(url, uuid))
     ffmpeg_thread.start()
 
 
-def run_ffmpeg(url):
-    output_file = 'output.avi'
+def run_ffmpeg(url, uuid):
+    output_file = '{}.avi'.format(uuid)
     try:
         subprocess.run(
                 ['ffmpeg', '-i', url, output_file],
