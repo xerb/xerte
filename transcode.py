@@ -1,20 +1,5 @@
-from flask import request
-from urllib import parse
 import subprocess
 import threading
-import uuid
-
-def start_tasks():
-    params = request.args
-    input_file_url = params['url']
-    decode = parse.unquote(input_file_url)
-    output_uuid = uuid.uuid4()
-    start_transcode_pipeline(decode, output_uuid)
-    return str(output_uuid), 201
-
-
-def urlencode(str):
-    return parse.quote(str)
 
 
 def start_transcode_pipeline(url, uuid):
