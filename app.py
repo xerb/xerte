@@ -13,12 +13,12 @@ def start_job():
     HTML decoding built in.
     Responce will be a generated UUID which will correspond to created file name.
     """
-
     params = request.args
     input_file_url = params['url']
     decode = parse.unquote(input_file_url)
     output_uuid = uuid.uuid4()
     transcode.start_transcode_pipeline(decode, output_uuid)
+    
     return str(output_uuid), 201
 
 
@@ -29,11 +29,10 @@ def job_status():
     params = request.args
     thread_name = params['uuid']
     decode = parse.unquote(thread_name)
-    status = transcode.check_status(decode)
-
+    status = "...Please check back next update!" # TODO This needs to query the DB by uuid and get the status?
 
     return status, 201 # TODO change this to the correct response 
 
 
-if __name__ == "__main__":V
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
