@@ -27,7 +27,7 @@ def job_status(uuid):
     """DB query for job status"""
     uuid = str(uuid)
     result = get_job_status(uuid)
-    status = result if result else "Not Found"
+    status = result or "Not Found"
     http_code = 200 if result else 404
     return status, http_code
 
