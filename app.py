@@ -22,7 +22,7 @@ def start_job():
     return str(output_uuid), 201
 
 
-@app.route("/job_status", methods=["POST"]) # TODO Or a GET?
+@app.route("/job_status", methods=["GET"])
 def job_status():
     """GET request with UUID to track if media is converted.
     """
@@ -31,7 +31,7 @@ def job_status():
     decode = parse.unquote(thread_name)
     status = "...Please check back next update!" # TODO This needs to query the DB by uuid and get the status?
 
-    return status, 201 # TODO change this to the correct response 
+    return status, 200 # TODO
 
 
 if __name__ == "__main__":
