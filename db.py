@@ -24,3 +24,11 @@ def update_job_status(uuid, status):
     c.execute("UPDATE job_status SET status=(?), stopped=(?) WHERE uuid=?", (status, time.time(), uuid))
     db.commit()
     db.close()
+
+def get_job_status(uuid):
+    db = get_db()
+    c = db.cursor()
+    results = c.execute("SELECT status FROM job_status WHERE uuid=?", (uuid,))
+    status = results.fetchone()[0]
+    db.close()
+    return status

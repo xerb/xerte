@@ -2,7 +2,7 @@ from flask import Flask, request
 from urllib import parse
 import uuid
 import transcode
-
+from db import get_job_status
 
 app = Flask(__name__)
 
@@ -22,16 +22,12 @@ def start_job():
     return str(output_uuid), 201
 
 
-@app.route("/job_status", methods=["GET"])
-def job_status():
-    """GET request with UUID to track if media is converted.
-    """
-    params = request.args
-    thread_name = params['uuid']
-    decode = parse.unquote(thread_name)
-    status = "...Please check back next update!" # TODO This needs to query the DB by uuid and get the status?
-
-    return status, 200 # TODO
+@app.route("/job_status/<uuid:uuid>", methods=["GET"])
+def job_status(uuid):
+    uuid = str(uuid)
+    status = get_job_status(uuid)
+    http_code = 200
+    return status, http_code
 
 
 if __name__ == "__main__":
