@@ -18,6 +18,17 @@ familiar with using it, the Getting Started guide is quite good:
 
 https://docs.docker.com/get-started/
 
+From this directory, build the container:
+
+`docker build .`
+
+Then, to run the app:
+
+`docker run -t -p 8080:8080 [IMAGE]`
+
+Remember that you can list images using `docker images` if you don't know the
+image id.
+
 ## Components
 
 _Standing on the shoulders of gigantes_
