@@ -24,9 +24,11 @@ def start_job():
 
 @app.route("/job_status/<uuid:uuid>", methods=["GET"])
 def job_status(uuid):
+    """DB query for job status"""
     uuid = str(uuid)
-    status = get_job_status(uuid)
-    http_code = 200
+    result = get_job_status(uuid)
+    status = result if result else "Not Found"
+    http_code = 200 if result else 404
     return status, http_code
 
 

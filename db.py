@@ -29,6 +29,9 @@ def get_job_status(uuid):
     db = get_db()
     c = db.cursor()
     results = c.execute("SELECT status FROM job_status WHERE uuid=?", (uuid,))
-    status = results.fetchone()[0]
+    r = results.fetchone()
+    if not r:
+        return None
+    status = r[0]
     db.close()
     return status
