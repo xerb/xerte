@@ -9,5 +9,8 @@ src
 .vscode
 .idea
 
-# To ingnore local enviroments
+# To ignore local enviroments
 venv
+
+# To ignore .db files created by SQLite
+*.db
