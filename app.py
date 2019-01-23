@@ -2,6 +2,7 @@ from flask import Flask, request
 from urllib import parse
 import uuid
 import transcode
+import json
 from db import get_job_status
 
 app = Flask(__name__)
@@ -27,9 +28,10 @@ def job_status(uuid):
     """DB query for job status"""
     uuid = str(uuid)
     result = get_job_status(uuid)
-    status = result or "Not Found"
+    data = json.dumps(result)
+    data = data or "Not Found"
     http_code = 200 if result else 404
-    return status, http_code
+    return data, http_code
 
 
 if __name__ == "__main__":
