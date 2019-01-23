@@ -8,6 +8,7 @@ src
 # Editor files to ignore
 .vscode
 .idea
+*.swp
 
 # To ignore local enviroments
 venv
