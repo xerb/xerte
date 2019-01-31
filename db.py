@@ -1,14 +1,15 @@
 import psycopg2 # TODO: add to requirements or RUN in docker file? Tested with psycopg = 2-2.7.7
+import os
 import time
 
 
 def connect_db():
     """Connect to Database with environment variables and pass connection to other functions."""
     conn = psycopg2.connect( # TODO: Replace with environ variables.
-        host="localhost",
-        database="transcode", 
-        user="j",
-        password="postgres"
+        host=os.environ['DBHOST'],
+        database=os.environ['POSTDB'],
+        user=os.environ['DBUSER'],
+        password=os.environ['DBPASSWORD']
         )
     cur = conn.cursor()
     # cur.execute('''CREATE TABLE IF NOT EXISTS job_status (uuid, url, status, start_time, stop_time)''')
