@@ -9,6 +9,8 @@ RUN apt-get update -qq && apt-get install -y \
 
 RUN pip3 install flask && pip3 install -r requirements.txt
 
+RUN pip3 install psycopg2-binary
+
 RUN pip3 install -r requirements.txt
 
 RUN apt-get install -y ffmpeg
