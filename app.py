@@ -29,10 +29,10 @@ def job_status(uuid):
     uuid = str(uuid)
     result = get_job_status(uuid)
     data = json.dumps(result)
-    data = data or "Not Found"
-    http_code = 200 if result else 404
+    data = data if data !='null' else "Not Found"
+    http_code = 200 if data !='Not Found' else 404
     return data, http_code
 
-
+    
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
