@@ -1,7 +1,7 @@
 import subprocess
 import threading
 import time
-from db import get_db, insert_job_status, update_job_status
+from db import insert_job_status, update_job_status
 
 
 def start_transcode_pipeline(url, uuid):
