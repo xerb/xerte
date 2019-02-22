@@ -3,10 +3,11 @@ from urllib import parse
 import uuid
 import transcode
 import json
-from db import get_job_status
+from db import get_job_status, close_db, connect_db
 
 app = Flask(__name__)
-
+with app.app_context():
+    connect_db()
 
 @app.route("/start_job", methods=["POST"])
 def start_job():
@@ -32,6 +33,10 @@ def job_status(uuid):
     http_code = 200 if data != 'Not Found' else 404
     return data, http_code
 
+
+@app.teardown_appcontext
+def teardown_app():
+    close_db()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
