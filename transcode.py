@@ -1,6 +1,5 @@
 import subprocess
 import threading
-import time
 from db import insert_job_status, update_job_status
 
 
@@ -16,7 +15,7 @@ def run_ffmpeg(url, uuid):
         Also creates a log tracking completion of threads.
     """
     name_uuid = str(uuid)
-    output_file = '{}.avi'.format(uuid) # TODO: Remove hard-coding!
+    output_file = '{}.avi'.format(uuid)  # TODO: Remove hard-coding!
     insert_job_status(name_uuid, url)
     try:
         subprocess.run(
